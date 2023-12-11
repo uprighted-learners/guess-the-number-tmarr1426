@@ -29,7 +29,7 @@ async function start() {
           let answer6 = await ask("Is your number 87 (Y/N) \n")
         } else if (answer4 === L) {
           let answer8 = await ask("Higher or Lower (H/L) \n");
-        }
+        } 
       }
     } else {
       if (answer2 == "L") {

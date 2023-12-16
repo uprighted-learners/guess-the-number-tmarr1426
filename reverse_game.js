@@ -30,6 +30,7 @@ async function reverse_start() {
       if (end === "Y") {
     } else if (end === "N") { // User response
       console.log("That was fun! Bye!");
+      process.exit();
     }
   }
 }  

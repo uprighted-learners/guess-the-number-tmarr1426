@@ -14,10 +14,10 @@ async function reverse_start() {
     
     do {
       let guess = await ask('Guess a number between 1 and 100. \n');
-      attempts ++
+      attempts ++;
 
       if (guess === secretNumber) {
-        console.log('Congratulations! You guessed the correct number.');
+        console.log(`Congratulations! You guessed the correct number. It took you ${attempts} attempts!`);
         break;
       } else  if (guess > secretNumber) {
         console.log('Try Lower');

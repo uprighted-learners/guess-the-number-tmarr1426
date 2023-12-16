@@ -16,15 +16,15 @@ async function start() {
   // Now try and complete the program.
 
   var minNum = 1; // sets a minimum
-  var maxNum = 100 // sets a maximum
+  var maxNum = 100; // sets a maximum
   var guess; // starts the guessing
   let attempts = 0;
 
   do { // Do While loop that alters the high and low end of the variables to 
-    var guess = Math.floor((maxNum-minNum) / 2) + 1; // Makes an estimated guess based off of max and min.
-    attempts ++
+    var guess = Math.floor((maxNum+minNum) / 2) ; // Makes an estimated guess based off of max and min.
+    attempts ++;
     let answer = await ask (`Is your secret number ${guess}? (Y/N)\n`); //Checks to see if the computers guess is equal to secret number
-    console.log(minNum, maxNum); // Test line
+    console.log("Attempt Number:", attempts, "Minimum Value:", minNum, "Maximum Value:", maxNum);
     if (answer === "N") { // User response
       let answer2 = await ask (`Higher or Lower (H/L)\n`) // Computer asks if the secret number is higher or lower than their guess.
       if (answer2 === "H") {// User response
@@ -45,8 +45,10 @@ async function start() {
         start ();
       } else if (end === "N") { // User response
         console.log("That was fun! Bye!");
+        process.exit();
       }
     }
   }
+
 start();
 

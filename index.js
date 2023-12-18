@@ -12,11 +12,11 @@ async function start() {
   let game = await ask("Let's play a game! Please choose either normal or reverse. (N/R)\n")
   if (game === "N") {
     var minNum = await ask("Enter the minimum number in the game's range (cannot be lower than 1):\n");
-    minNum = parseInt(minNum); // converts the user input from a string to a number. And sets the minimum.
+    minNum = Number(minNum); // converts the user input from a string to a number. And sets the minimum.
 
   
     var maxNum = await ask(`Enter the maximum number in the game's range (must be greater than ${minNum}):\n`);
-    maxNum = parseInt(maxNum); // converts the user input from a string to a number. And set the maximum.
+    maxNum = Number(maxNum); // converts the user input from a string to a number. And set the maximum.
 
     if (isNaN(minNum) || isNaN(maxNum) || minNum < 1 || maxNum <= minNum) {
       console.log("Invalid input. Please enter valid numbers.");
@@ -39,6 +39,15 @@ async function start() {
         if (answer2 === "H") {// User response
           minNum = guess + 1; // Sets new minimum = to the guessed amount EG: guess was 50 new min is 50.
           maxNum;
+          // if (guess > maxNum) {
+
+          //   let answer3 = await ask(`What do you mean Higher? I already guessed ${maxNum}! Would you like to restart the game? (Y/N)?\n`);
+
+          //   start();
+
+          // } else {
+          //   return;
+          // }
         }  else if (answer2 === "L") { 
           var maxNum = guess; // Sets a new maximum = the guessed amount EG: guess was 50 new max is 50.
           var minNum;

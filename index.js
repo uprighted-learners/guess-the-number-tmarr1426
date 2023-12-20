@@ -40,9 +40,9 @@ async function start() {
       if (answer === "N") { // User response
         let answer2 = await ask (`Higher or Lower (H/L)\n`) // Computer asks if the secret number is higher or lower than their guess.
         if (answer2 === "H") {// User response
-          if (minNum > maxNum) {
+          if (minNum >= maxNum) {
 
-            let answer3 = await ask(`What do you mean Higher? I already guessed ${maxNum}! Would you like to restart the game? (Y/N)?\n`);
+            let answer3 = await ask(`What do you mean Higher? I already guessed ${maxNum + 1}! Would you like to restart the game? (Y/N)?\n`);
             if (answer3 === "Y") {
               start();
             } else if (answer3 === "N"){
@@ -55,21 +55,29 @@ async function start() {
             maxNum;
             //let answer2 = await ask (`Higher or Lower (H/L)\n`);
           }
-        }  else if (answer2 === "L") { 
-          var maxNum = guess; // Sets a new maximum = the guessed amount EG: guess was 50 new max is 50.
-          var minNum;
-        // if (answer2 === "L" && guess != secretNumber) {
-        //   console.log(`What do you mean Lower? It can't be higher`)
-        // }
+        }  else if (answer2 === "L") {
+
+          if (minNum >= maxNum) {
+            let answer3 = await ask(`What do you mean Lower? I already guessed ${minNum - 1}! Would you like to restart the game? (Y/N)?\n`);
+            if (answer3 === "Y") {
+              start();
+            } else if (answer3 === "N"){
+              console.log("There must have been an error. End sequence.");
+              process.exit();
+            }
+          } else {
+          maxNum = guess - 1; // Sets a new maximum = the guessed amount EG: guess was 50 new max is 50.
+          minNum;
         }
       } else if (answer === "Y"){ // User response
           console.log(`Woohoo, your secret number was ${guess}!`)
           let end = await ask (`Thanks for playing! Do you want to play again? (Y/N)?\n`)
-        if (end === "Y") { // User response
+          if (end === "Y") { // User response
           start ();
-        } else if (end === "N") { // User response
+          } else if (end === "N") { // User response
           console.log("That was fun! Bye!");
-          process.exit();
+          process.exit();       
+          }
         }
       }
     }
